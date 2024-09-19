@@ -27,16 +27,15 @@ interface Student {
 }
 
 
-export async function addVolunteer(student: Student) {
+export async function addVolunteer(student: Student): Promise<boolean> {
 	try {
 		const mongoClient = await client.connect()
 		const col = mongoClient.db("TestingMongo").collection("volunteers")
 		col.insertOne(student)
-
-		return "Added student successfully!"
+		return true
 	} catch (e) {
 		console.error(e);
-		return "Failed to add student.";
+		return false
 	}
 }
 
@@ -69,5 +68,18 @@ export async function getVolunteers(): Promise<Student[]> {
 	} catch (e) {
 		console.error(e);
 		return []
+	}
+}
+
+
+export async function deleteVolunteer(searchName: string): Promise<boolean> {
+	try {
+		const mongoClient = await client.connect()
+		const col = mongoClient.db("TestingMongo").collection("volunteers")
+		col.deleteOne({name: searchName})
+		return true
+	} catch (e) {
+		console.error(e);
+		return false
 	}
 }
