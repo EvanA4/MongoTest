@@ -25,9 +25,12 @@ export async function addVol(toAdd: any): Promise<String> {
 }
 
 
-export async function delVol(toDel: any): Promise<String> {
+export async function delVol(toDel?: any): Promise<String> {
     try {
-        await volModel.deleteOne(toDel)
+        if (toDel)
+            await volModel.deleteOne(toDel)
+        else
+            await volModel.deleteMany()
         return "Deleted vol successfully!"
     } catch (e: any) {
         return e.message

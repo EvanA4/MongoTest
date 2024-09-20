@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { getConnection, findVol, addVol, delVol } from './actions'
 import { Volunteer } from '@/lib/Vol'
+import Reset from './component/Reset'
 
 
 const Main = () => {
@@ -41,7 +42,7 @@ const Main = () => {
                     <h1 className="text-3xl p-5 w-fit">Volunteers <span className="text-gray-400 text-lg">(scroll)</span></h1>
                     <div className="h-[80vh] overflow-scroll bg-black rounded-lg border-[2px] border-white scrollbar-none">
                         {vols.map((vol) => {return (
-                            <div key={JSON.stringify(vol)} className="p-5 border-gray-700 border-[2px] m-5 rounded-xl">
+                            <div key={JSON.stringify(vol)} className="p-5 border-gray-700 border-[2px] m-5 rounded-xl hover:bg-neutral-900">
                                 <p className="text-2xl">{vol.name}</p>
                                 <p className="text-gray-400">Age: {vol.age ? vol.age.toString() : ''}</p>
                                 <p className="text-gray-400">Date: {new Date(vol.createdAt).toLocaleString('en-US')}</p>
@@ -66,7 +67,7 @@ const Main = () => {
                                     setVols(await findVol())
                                 }
                                 refresh()
-                            }} className="bg-green-500 text-white p-2 w-[75px] rounded-lg">Add</button>
+                            }} className="bg-green-600 hover:bg-green-400 text-white p-2 w-[75px] rounded-lg">Add</button>
                             <button onClick={() => {
                                 delVol({name: volInput.name})
                                 const refresh = async () => {
@@ -74,7 +75,8 @@ const Main = () => {
                                     setVols(await findVol())
                                 }
                                 refresh()
-                            }} className="bg-red-500 text-white p-2 w-[75px] rounded-lg">Delete</button>
+                            }} className="bg-red-600 hover:bg-red-400 text-white p-2 w-[75px] rounded-lg">Delete</button>
+                            <Reset setter={setVols}/>
                         </div>
                     </div>
                 </div>
