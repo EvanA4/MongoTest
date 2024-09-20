@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import { findVol, addVol, delVol } from './actions'
+import { getConnection, findVol, addVol, delVol } from './actions'
 import { Volunteer } from '@/lib/Vol'
 
 
@@ -15,6 +15,7 @@ const Main = () => {
     useEffect(() => {
         if (!firstLoad.current) {
             const fetchData = async () => {
+                console.log(await getConnection())
                 const data = await findVol()
                 setVols(data)
             }

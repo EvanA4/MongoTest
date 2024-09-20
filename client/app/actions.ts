@@ -1,5 +1,11 @@
 'use server'
 import { volModel, Volunteer } from '@/lib/Vol'
+import { isConnected, ConnectStat } from '@/lib/mymg'
+
+
+export async function getConnection(): Promise<ConnectStat> {
+    return isConnected
+}
 
 
 export async function findVol(filter?: any): Promise<Volunteer[]> {
