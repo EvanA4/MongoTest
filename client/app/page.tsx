@@ -46,8 +46,8 @@ export default function Main() {
         <>
             <div className="flex flex-row bg-slate-900">
                 <div className="m-auto w-[20vw] mx-[10vw]">
-                    <h1 className="text-3xl p-5 w-fit">Volunteers</h1>
-                    <div className="h-[80vh] overflow-scroll bg-black rounded-lg border-[2px] border-white">
+                    <h1 className="text-3xl p-5 w-fit">Volunteers <span className="text-gray-400 text-lg">(scroll)</span></h1>
+                    <div className="h-[80vh] overflow-scroll bg-black rounded-lg border-[2px] border-white scrollbar-none">
                         {vols.map((student) => {return (
                             <div key={JSON.stringify(student)} className="p-5 border-gray-700 border-[2px] m-5 rounded-xl">
                                 <p className="text-2xl">{student.name}</p>
